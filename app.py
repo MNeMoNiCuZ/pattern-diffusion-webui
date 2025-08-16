@@ -29,7 +29,7 @@ with gr.Blocks(title="Pattern Diffusion GUI") as demo:
         with gr.Column():
             prompt_input = gr.Textbox(
                 label="Prompt",
-                value="Vibrant floral pattern with __color__ and __color__ flowers and __objects__ against a __color__ background.",
+                value="Vibrant floral pattern with __color__ and __color__ flowers and __objects__ against a {dotted|striped|diagonal|__color__|grid} background.",
                 lines=3,
             )
             width_slider = gr.Slider(minimum=256, maximum=2048, step=64, value=1024, label="Width")
