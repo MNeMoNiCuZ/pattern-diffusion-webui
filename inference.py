@@ -105,11 +105,6 @@ def generate_pattern(
     ).to("cuda")
     pipe.scheduler = DDPMScheduler.from_config(pipe.scheduler.config)
 
-    # Make sure to disable circular padding on conv2d before starting inference as it should only be enabled in last 20% of steps
-    # This is not necessary if you are only generating a single image (as it is disabled by default when the pipe loads)
-    disable_seamless(pipe.unet)
-    disable_seamless(pipe.vae)
-
     generator = None
     if seed != -1:
         generator = torch.Generator("cuda").manual_seed(seed)
@@ -118,6 +113,10 @@ def generate_pattern(
 
     all_images = []
     for i in range(batch_count):
+        # Make sure to disable circular padding on conv2d before starting inference as it should only be enabled in last 20% of steps
+        # This is not necessary if you are only generating a single image (as it is disabled by default when the pipe loads)
+        disable_seamless(pipe.unet)
+        disable_seamless(pipe.vae)
         output = pipe(
             num_inference_steps=num_inference_steps,
             prompt=processed_prompt,
