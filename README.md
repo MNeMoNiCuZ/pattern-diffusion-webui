@@ -69,6 +69,5 @@ This will randomly choose between "modern", "vintage", or "retro", and between "
 - **Seed**: A number to control the random generation. Use `-1` for a random seed. Using the same seed with the same prompt will produce the same image.
 - **Batch Count**: The number of images to generate in a single run.
 - **Generate**: Runs the generation process once for the specified batch count.
-- **Generate Forever**: Continuously generates new images until the "Cancel" button is pressed. This is useful for quickly exploring different random variations of a prompt.
-- **Cancel**: Stops the "Generate Forever" loop.
+- **Generate Forever**: Continuously generates new images. When one image is done, the next will start. There's currently no way of stopping this except for manually shutting down the server.
 - **Processed Prompt**: Displays the final prompt after all wildcards and options have been resolved, showing you exactly what prompt was used for the generated image.
